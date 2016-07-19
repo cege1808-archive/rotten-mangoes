@@ -1,7 +1,7 @@
 <%= link_to "Back to this movie", movie_path(@movie) %>
 
 <h2>Edit this movie.</h2>
-<%= form_for @movie do |f| %>
+<%= form_for @movie, :html => {:multipart => true}  do |f| %>
   <div>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -19,8 +19,8 @@
     <%= f.number_field :runtime_in_minutes %>
   </div>
   <div>
-    <%= f.label :poster_image_url %><br>
-    <%= f.text_field :poster_image_url %>
+    <%= f.label :remote_image_url, "Image URL" %><br>
+    <%= f.text_field :remote_image_url %>
   </div>
   <div>
     <%= f.label :description %><br>
