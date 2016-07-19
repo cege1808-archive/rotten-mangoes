@@ -1,5 +1,7 @@
 class Movie < ApplicationRecord
 
+  has_many :reviews
+
   # Validations
   validates :title, presence: true
   validates :director, presence: true
