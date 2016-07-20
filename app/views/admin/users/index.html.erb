@@ -1,4 +1,5 @@
 List of Users
+<%=paginate @all_users %>
 
 <% @all_users.each do |user| %>
   <p><%= user.full_name %></p>

@@ -10,6 +10,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @all_users = User.order(:firstname).order(:lastname)
+    @all_users = Kaminari.paginate_array(@all_users).page(params[:page]).per(10)
   end
 
 
