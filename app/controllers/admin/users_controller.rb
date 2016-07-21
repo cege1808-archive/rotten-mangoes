@@ -5,6 +5,9 @@ class Admin::UsersController < ApplicationController
   def require_admin
     if current_user.nil? || !current_user.admin?
       redirect_to root_path
+    else
+      puts current_user.id
+      session[:admin_id] = current_user.id
     end
   end
 

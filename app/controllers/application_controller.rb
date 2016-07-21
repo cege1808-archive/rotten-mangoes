@@ -15,6 +15,12 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+ def shadow_user
+    @shadow_user ||= User.find(session[:shadow_id]) if session[:shadow_id]
+  end
+
+
   helper_method :current_user
+  helper_method :shadow_user
 
 end
