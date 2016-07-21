@@ -2,12 +2,9 @@
 <%= @user.email %>
 
 <div>
-
 <% @user.reviews.each do |review| %>
   <p><%= review.movie.title %></p>
   <p><%= review.text %></p>
   <p><%= review.rating_out_of_ten %>/10</p>
-  <p>Admin:<%= @user.admin? %></p>
 <% end %>
-
 </div>
