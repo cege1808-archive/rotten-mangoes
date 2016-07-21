@@ -1,5 +1,5 @@
-<h1>Sign Up</h1>
-<%= form_for @user do |f| %>
+<h1>Create User</h1>
+<%= form_for [:admin, @user] do |f| %>
   <% if @user.errors.any? %>
     <div>
       <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
@@ -21,6 +21,14 @@
   <div>
     <%= f.label :lastname, "Last Name" %><br>
     <%= f.text_field :lastname %>
+  </div>
+    <div>
+    <%= f.label :status %><br>
+    <%= f.select(:admin, 
+          options_for_select([
+            ['User', false],
+            ['Admin', true]
+            ])) %>
   </div>
   <div>
     <%= f.label :password %><br>

@@ -1,0 +1,26 @@
+<%= link_to "Back to this user", admin_user_path(@user) %>
+
+<h2>Edit this user.</h2>
+<%= form_for [:admin, @user], :html => {:multipart => true}  do |f| %>
+  <div>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :firstname, "First Name" %><br>
+    <%= f.text_field :firstname %>
+  </div>
+  <div>
+    <%= f.label :lastname, "Last Name" %><br>
+    <%= f.text_field :lastname %>
+  </div>
+  <div>
+    <%= f.label :status %><br>
+    <%= f.select(:admin, 
+          options_for_select([
+            ['User', false],
+            ['Admin', true]
+            ])) %>
+  </div>
+  <div><%= f.submit "Submit" %></div>
+<% end %>
