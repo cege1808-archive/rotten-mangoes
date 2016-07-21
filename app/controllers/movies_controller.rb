@@ -1,6 +1,14 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.order(release_date: :desc)
+  
+    if params[:title_query] || params[:director_query] 
+
+      #transform from "0,89" to [0,89]
+      params[:runtime_in_minutes_query] = params[:runtime_in_minutes_query].split(",").map(&:to_i)
+
+      @movies = @movies.where('title LIKE ?', "%#{params[:title_query]}%").where('director LIKE ?', "%#{params[:director_query]}%").where('runtime_in_minutes >= ? AND runtime_in_minutes <= ?', "#{params[:runtime_in_minutes_query][0]}","#{params[:runtime_in_minutes_query][1]}")
+    end
   end
 
   def show
