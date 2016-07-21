@@ -51,11 +51,10 @@ class Admin::UsersController < ApplicationController
 
   def destroy 
     @user = User.find(params[:id])
-    @reviews = Review.where(user_id: @user.id)
+    # reviews = @user.reviews
     @user.destroy
-    @reviews.each do |review|
-      review.destroy
-    end
+    # reviews.destroy_all
+    UserMailer.user_deleted_email(@user).deliver_now
     redirect_to admin_users_path
   end
 
