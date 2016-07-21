@@ -1,15 +1,16 @@
 class MoviesController < ApplicationController
 
   def index
-    if params[:title_query] || params[:director_query] 
+    # TODO suggestion, use case 1,2,3,4 and make a private method to identify which correspond to which
 
-      # transform from "0,89" to [0,89]
-      # TODO suggestion, use case 1,2,3,4 and make a private method to identify which correspond to which
-      params[:runtime_in_minutes_query] = params[:runtime_in_minutes_query].split(",").map(&:to_i)
+    if params[:searched_query]
 
-      @movies = Movie.title_search(params[:title_query]).director_search(params[:director_query]).runtime_in_minutes_search(params[:runtime_in_minutes_query])
+      @movies = Movie.search_all(params[:searched_query], params[:runtime_in_minutes_query])
+      
     else
       @movies = Movie.order(release_date: :desc)
+
+>>>>>>> feature/better-search
     end
   end
 

@@ -1,29 +1,22 @@
+
+
 <%= form_tag(movies_path, method: :get) do %>
+  <!-- TODO make  width longer-->
+  <%= text_field_tag(:searched_query, nil, placeholder:"Search for title/director" ) %>
+  <div>
+    <%= label_tag(:runtime_in_minutes) %><br>
+    <%= select_tag(:runtime_in_minutes_query, options_for_select([
+      ['Anytime', "0,300"],
+      ['Under 90 minutes', "0,89"],
+      ['Between 90 and 120 minutes', "90,120" ], 
+      ['Over 120 minutes', "121,300" ]
+      ])) %>
 
-<div>
-  <%= label_tag(:title) %><br>
-  <%= text_field_tag(:title_query) %>
-</div>
+  </div>
 
-<div>
-  <%= label_tag(:director) %><br>
-  <%= text_field_tag(:director_query) %>
-</div>
-
-<div>
-  <%= label_tag(:runtime_in_minutes) %><br>
-  <%= select_tag(:runtime_in_minutes_query, options_for_select([
-    ['Anytime', "0,300"],
-    ['Under 90 minutes', "0,89"],
-    ['Between 90 and 120 minutes', "90,120" ], 
-    ['Over 120 minutes', "121,300" ]
-    ])) %>
-
-</div>
-
-<div>
-  <%= submit_tag("Search") %>
-</div>
+  <div>
+    <%= submit_tag("Search") %>
+  </div>
 
 <% end %>
 

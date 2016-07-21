@@ -13,10 +13,7 @@ class Movie < ApplicationRecord
 
   validate :release_date_is_in_the_past
 
-
-  scope :title_search, ->(title_query) { where("title LIKE ?", "%#{title_query}%") }
-  scope :director_search, ->(director_query) { where("director LIKE ?", "%#{director_query}%") }
-  scope :runtime_in_minutes_search, ->(runtime_in_minutes_query) { where("runtime_in_minutes >= ? AND runtime_in_minutes <= ?",runtime_in_minutes_query[0],runtime_in_minutes_query[1]) }
+  scope :search_all, ->(searched_query, runtime_in_minutes_query ) { where("title LIKE ? OR director LIKE ?", "%#{searched_query}%", "%#{searched_query}%").where("runtime_in_minutes >= ? AND runtime_in_minutes <= ?",runtime_in_minutes_query[0],runtime_in_minutes_query[1])}
 
   def review_average
     unless reviews.empty?
