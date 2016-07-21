@@ -10,7 +10,6 @@ class MoviesController < ApplicationController
     else
       @movies = Movie.order(release_date: :desc)
 
->>>>>>> feature/better-search
     end
   end
 
